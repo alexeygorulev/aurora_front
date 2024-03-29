@@ -24,7 +24,8 @@ export const getColor = (props: StyledButtonProps, sPressed: boolean, sHovered: 
 };
 
 export const getBackgroundColor = (props: StyledButtonProps, sPressed: boolean, sHovered: boolean): string => {
-  const { sDisabled, sFocused, sType, theme } = props;
+  const { sDisabled, sFocused, sType, theme, isLeaveBackGround } = props;
+  if (isLeaveBackGround) return theme.button.backgroundColors[sType].normal;
   if (sDisabled) return theme.button.backgroundColors[sType].disabled;
   if (sPressed) return theme.button.backgroundColors[sType].pressed;
   if (sHovered) return theme.button.backgroundColors[sType].hovered;

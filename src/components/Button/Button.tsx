@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ButtonComponentProps } from './types';
 import { StyledButton } from './styles';
 import { useTheme } from 'styled-components';
+import Loader from 'components/Loader';
 
 const Button: React.FC<ButtonComponentProps> = (props) => {
   const {
@@ -15,6 +16,8 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
     loading = false,
     rounded = false,
     weight = 'medium',
+    loaderType = 'secondary',
+    loaderSize = 's',
     onClick = () => null,
     children,
   } = props;
@@ -66,6 +69,7 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       onClick={handleClick}
+      isLeaveBackGround={loading}
       sFontWeight={weight}
       onMouseEnter={handleMouseEnter}
     >
@@ -77,8 +81,7 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
           <span></span>
         </>
       )}
-
-      {children}
+      {loading ? <Loader size={loaderSize} type={loaderType} /> : children}
     </StyledButton>
   );
 };

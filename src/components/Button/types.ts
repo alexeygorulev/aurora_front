@@ -1,4 +1,4 @@
-import { ButtonSizes, ButtonTypes, Display, FontWeight } from 'components/_themes/dark/types';
+import { ButtonSizes, ButtonTypes, Display, FontWeight, LoaderSize, LoaderTypes } from 'components/_themes/dark/types';
 import { Theme } from 'components/_themes/types';
 
 export type ButtonClickEventParams = Readonly<{
@@ -16,6 +16,8 @@ export type ButtonComponentProps = Readonly<{
   rounded?: boolean;
   weight?: FontWeight;
   onClick?: (params: ButtonClickEventParams) => void;
+  loaderSize?: LoaderSize;
+  loaderType?: LoaderTypes;
   children?: React.ReactNode | React.ReactNode[];
 }>;
 
@@ -29,4 +31,5 @@ export type StyledButtonProps = Readonly<{
   sFocused: boolean;
   sSize: ButtonSizes;
   sRounded: boolean;
+  isLeaveBackGround: boolean;
 }>;

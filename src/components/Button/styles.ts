@@ -119,7 +119,7 @@ export const StyledButton = styled.button.attrs({ type: 'button' })<StyledButton
 
   &:hover {
     border-color: ${(props) => getBorderColor(props, false, true)};
-    box-shadow: 0 0px 20px rgba(110, 48, 180, 0.4);
+    box-shadow: ${({ sDisabled }) => (sDisabled ? 'none' : '0 0px 20px rgba(110, 48, 180, 0.4)')};
   }
 
   &:active {

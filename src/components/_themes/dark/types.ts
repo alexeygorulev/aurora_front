@@ -4,6 +4,7 @@ import { display } from './_typography';
 import { styles as span } from './span';
 import { refs as typographyRefs } from './_typography';
 import { refs as buttonRefs } from './button';
+import { refs as loaderRefs } from './loader';
 import { mediaSizes } from '../constants';
 
 export type Size = keyof typeof typographyRefs.sizes;
@@ -37,3 +38,7 @@ export type ButtonTypes = keyof typeof buttonRefs.types;
 export type ButtonSizes = keyof typeof buttonRefs.sizes;
 
 export type ButtonAnimationTypes = keyof typeof buttonRefs.animation;
+
+export type LoaderSize = keyof typeof loaderRefs.sizes;
+
+export type LoaderTypes = keyof typeof loaderRefs.types;

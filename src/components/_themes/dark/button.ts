@@ -99,9 +99,9 @@ export const styles = {
     },
   },
   height: {
-    [mediaSizes.s]: { s: 40, m: 56, l: 80 },
-    [mediaSizes.m]: { s: 40, m: 56, l: 80 },
-    [mediaSizes.l]: { s: 40, m: 56, l: 80 },
+    [mediaSizes.s]: { s: 45, m: 56, l: 80 },
+    [mediaSizes.m]: { s: 45, m: 56, l: 80 },
+    [mediaSizes.l]: { s: 45, m: 56, l: 80 },
   },
 
   padding: {
