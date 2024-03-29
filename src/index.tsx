@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { StyleSheetManager, ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
+import Application from './application/Application';
+import themes, { THEMES } from 'components/_themes';
+import isPropValid from '@emotion/is-prop-valid';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <BrowserRouter>
+      <StyleSheetManager shouldForwardProp={isPropValid}>
+        <ThemeProvider theme={themes[THEMES.DARK]}>
+          <Application />
+        </ThemeProvider>
+      </StyleSheetManager>
+    </BrowserRouter>
+  </React.StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
