@@ -6,6 +6,7 @@ export const refs = {
   types: {
     primary: 'primary',
     secondary: 'secondary',
+    major: 'major',
   },
   display: {
     block: 'block',
@@ -46,6 +47,12 @@ export const styles = {
       [refs.animation.bottom]: gradients.purple_main_animation_bottom,
       [refs.animation.left]: gradients.purple_main_animation_left,
     },
+    [refs.types.major]: {
+      [refs.animation.top]: colors.transparent,
+      [refs.animation.right]: colors.transparent,
+      [refs.animation.bottom]: colors.transparent,
+      [refs.animation.left]: colors.transparent,
+    },
   },
 
   backgroundColors: {
@@ -55,6 +62,7 @@ export const styles = {
       hovered: gradients.purple_main,
       pressed: gradients.purple_main,
       disabled: colors.secondary,
+      selected: colors.transparent,
     },
     [refs.types.secondary]: {
       normal: colors.transparent,
@@ -62,6 +70,15 @@ export const styles = {
       disabled: colors.secondary,
       focused: colors.transparent,
       pressed: colors.transparent,
+      selected: gradients.purple_main,
+    },
+    [refs.types.major]: {
+      normal: colors.transparent,
+      hovered: gradients.purple_main,
+      disabled: colors.secondary,
+      focused: colors.transparent,
+      pressed: colors.transparent,
+      selected: gradients.purple_main,
     },
   },
 
@@ -80,6 +97,13 @@ export const styles = {
       pressed: colors.purple10,
       disabled: colors.secondary,
     },
+    [refs.types.major]: {
+      normal: colors.secondary10,
+      focused: colors.secondary10,
+      hovered: colors.secondary10,
+      pressed: colors.secondary10,
+      disabled: colors.secondary,
+    },
   },
 
   colors: {
@@ -91,6 +115,13 @@ export const styles = {
       disabled: colors.white,
     },
     [refs.types.secondary]: {
+      normal: colors.white,
+      focused: colors.white,
+      hovered: colors.white,
+      pressed: colors.white,
+      disabled: colors.white,
+    },
+    [refs.types.major]: {
       normal: colors.white,
       focused: colors.white,
       hovered: colors.white,

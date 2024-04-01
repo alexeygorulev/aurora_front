@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { ButtonComponentProps } from './types';
-import { StyledButton } from './styles';
+import { StyledButton, StyledButtonContent, StyledButtonIcon } from './styles';
 import { useTheme } from 'styled-components';
 import Loader from 'components/atoms/Loader';
+import Icon from 'components/icons/Icon';
 
 const Button: React.FC<ButtonComponentProps> = (props) => {
   const {
@@ -17,7 +18,9 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
     rounded = false,
     weight = 'medium',
     loaderType = 'secondary',
+    typeIcon = null,
     loaderSize = 's',
+    isSelected = false,
     onClick = () => null,
     children,
   } = props;
@@ -72,6 +75,7 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
       isLeaveBackGround={loading}
       sFontWeight={weight}
       onMouseEnter={handleMouseEnter}
+      sSelected={isSelected}
     >
       {type === 'primary' && (
         <>
@@ -81,7 +85,18 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
           <span></span>
         </>
       )}
-      {loading ? <Loader size={loaderSize} type={loaderType} /> : children}
+      {loading ? (
+        <Loader size={loaderSize} type={loaderType} />
+      ) : (
+        <StyledButtonContent>
+          {typeIcon && (
+            <StyledButtonIcon>
+              <Icon type={typeIcon} size={size} />
+            </StyledButtonIcon>
+          )}
+          {children}
+        </StyledButtonContent>
+      )}
     </StyledButton>
   );
 };

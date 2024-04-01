@@ -1,6 +1,7 @@
 import Button from 'components/atoms/Button';
 import Grid, { Item } from 'components/atoms/Grid';
 import Loader from 'components/atoms/Loader';
+import Tabs from 'components/atoms/Tabs';
 import { Block, H1, H2, H3, H4, H5, P } from 'components/atoms/Typography';
 import Span from 'components/atoms/Typography/Span';
 import Icon from 'components/icons/Icon';
@@ -36,11 +37,11 @@ const Application: React.FC = () => {
           </Button>
         </Item>
         <Item>
-          <Button type="secondary" size="s">
+          <Button typeIcon="iconGoogle" rounded={true} type="major" size="s">
             Кнопка
           </Button>
           <Block>
-            <Button width={400} type="secondary" size="m">
+            <Button rounded={true} isSelected width={400} type="secondary" size="m">
               Кнопка
             </Button>
           </Block>
@@ -56,6 +57,9 @@ const Application: React.FC = () => {
         </Item>
         <Item>
           <Icon type="iconChevronsRight" />
+        </Item>
+        <Item size={6}>
+          <Tabs>Админ</Tabs>
         </Item>
       </Grid>
     </div>

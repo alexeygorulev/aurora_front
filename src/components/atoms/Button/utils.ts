@@ -24,7 +24,8 @@ export const getColor = (props: StyledButtonProps, sPressed: boolean, sHovered: 
 };
 
 export const getBackgroundColor = (props: StyledButtonProps, sPressed: boolean, sHovered: boolean): string => {
-  const { sDisabled, sFocused, sType, theme, isLeaveBackGround } = props;
+  const { sDisabled, sFocused, sType, theme, isLeaveBackGround, sSelected } = props;
+  if (sType === 'secondary' && sSelected) return theme.button.backgroundColors[sType].selected;
   if (isLeaveBackGround) return theme.button.backgroundColors[sType].normal;
   if (sDisabled) return theme.button.backgroundColors[sType].disabled;
   if (sPressed) return theme.button.backgroundColors[sType].pressed;
@@ -40,7 +41,8 @@ export const getBackgroundColorAnimation = (props: StyledButtonProps, sAnimation
 };
 
 export const getBorderColor = (props: StyledButtonProps, sPressed: boolean, sHovered: boolean): string => {
-  const { sDisabled, sFocused, sType, theme } = props;
+  const { sDisabled, sFocused, sType, theme, sSelected } = props;
+  if (sType === 'secondary' && sSelected) return theme.button.backgroundColors[sType].selected;
   if (sDisabled) return theme.button.borderColors[sType].disabled;
   if (sPressed) return theme.button.borderColors[sType].pressed;
   if (sHovered) return theme.button.borderColors[sType].hovered;

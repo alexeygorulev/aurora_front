@@ -15,6 +15,7 @@ import {
   getPadding,
   getWidth,
 } from './utils';
+import { typeWithOutAnimation } from './constants';
 
 const expandCircle = keyframes`
   from {
@@ -161,6 +162,17 @@ export const StyledButton = styled.button.attrs({ type: 'button' })<StyledButton
     z-index: -1;
   }
   &:hover::after {
-    ${({ sDisabled, sType }) => (sDisabled || sType === 'primary' ? '' : circleAnimation)}
+    ${({ sDisabled, sType }) => (sDisabled || typeWithOutAnimation.includes(sType) ? '' : circleAnimation)}
   }
+`;
+
+export const StyledButtonIcon = styled.div`
+  display: inline;
+  margin: 0px 8px 2px 0px;
+`;
+
+export const StyledButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
