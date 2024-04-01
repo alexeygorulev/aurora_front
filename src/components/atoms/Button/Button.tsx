@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ButtonComponentProps } from './types';
 import { StyledButton } from './styles';
 import { useTheme } from 'styled-components';
-import Loader from 'components/Loader';
+import Loader from 'components/atoms/Loader';
 
 const Button: React.FC<ButtonComponentProps> = (props) => {
   const {

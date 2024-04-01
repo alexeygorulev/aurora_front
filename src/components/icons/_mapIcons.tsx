@@ -1,0 +1,35 @@
+import { iconRefs } from './_constants';
+import * as Item from './_items';
+import { IconProps } from './types';
+
+export const MapIcons = {
+  [iconRefs.iconBell]: (props: IconProps) => <Item.IconBell {...props} />,
+  [iconRefs.iconBookmark]: (props: IconProps) => <Item.IconBookmark {...props} />,
+  [iconRefs.iconCheck]: (props: IconProps) => <Item.IconCheck {...props} />,
+  [iconRefs.iconChevronsLeft]: (props: IconProps) => <Item.IconChevronsLeft {...props} />,
+  [iconRefs.iconChevronsRight]: (props: IconProps) => <Item.IconChevronsRight {...props} />,
+  [iconRefs.iconClock]: (props: IconProps) => <Item.IconClock {...props} />,
+  [iconRefs.iconEdit]: (props: IconProps) => <Item.IconEdit {...props} />,
+  [iconRefs.iconEye]: (props: IconProps) => <Item.IconEye {...props} />,
+  [iconRefs.iconEyeOff]: (props: IconProps) => <Item.IconEyeOff {...props} />,
+  [iconRefs.iconGoogle]: (props: IconProps) => <Item.IconGoogle {...props} />,
+  [iconRefs.iconHeadphones]: (props: IconProps) => <Item.IconHeadphones {...props} />,
+  [iconRefs.iconHeart]: (props: IconProps) => <Item.IconHeart {...props} />,
+  [iconRefs.iconHome]: (props: IconProps) => <Item.IconHome {...props} />,
+  [iconRefs.iconLock]: (props: IconProps) => <Item.IconLock {...props} />,
+  [iconRefs.iconLogo]: (props: IconProps) => <Item.IconLogo {...props} />,
+  [iconRefs.iconLogOut]: (props: IconProps) => <Item.IconLogOut {...props} />,
+  [iconRefs.iconMail]: (props: IconProps) => <Item.IconMail {...props} />,
+  [iconRefs.iconPause]: (props: IconProps) => <Item.IconPause {...props} />,
+  [iconRefs.iconPlay]: (props: IconProps) => <Item.IconPlay {...props} />,
+  [iconRefs.iconRepeat]: (props: IconProps) => <Item.IconRepeat {...props} />,
+  [iconRefs.iconSearch]: (props: IconProps) => <Item.IconSearch {...props} />,
+  [iconRefs.iconSettings]: (props: IconProps) => <Item.IconSettings {...props} />,
+  [iconRefs.iconSign]: (props: IconProps) => <Item.IconSign {...props} />,
+  [iconRefs.iconSlash]: (props: IconProps) => <Item.IconSlash {...props} />,
+  [iconRefs.iconSuccess]: (props: IconProps) => <Item.IconSuccess {...props} />,
+  [iconRefs.iconSuccessCheck]: (props: IconProps) => <Item.IconSuccessCheck {...props} />,
+  [iconRefs.iconUser]: (props: IconProps) => <Item.IconUser {...props} />,
+  [iconRefs.iconUsers]: (props: IconProps) => <Item.IconUsers {...props} />,
+  [iconRefs.iconVideo]: (props: IconProps) => <Item.IconVideo {...props} />,
+};

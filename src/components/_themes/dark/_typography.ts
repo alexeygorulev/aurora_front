@@ -42,11 +42,13 @@ export const display = {
 };
 export const styles = {
   fontFamily: { ...fonts },
+  display: { ...display },
 
   colors: {
     [refs.colors.major]: colors.black,
     [refs.colors.light]: colors.white,
     [refs.colors.negative]: colors.error0,
+    [refs.colors.transparent]: 'transparent',
   },
 
   blockMargin: {

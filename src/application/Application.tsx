@@ -1,8 +1,9 @@
-import Button from 'components/Button';
-import Grid, { Item } from 'components/Grid';
-import Loader from 'components/Loader';
-import { Block, H1, H2, H3, H4, H5, P } from 'components/Typography';
-import Span from 'components/Typography/Span';
+import Button from 'components/atoms/Button';
+import Grid, { Item } from 'components/atoms/Grid';
+import Loader from 'components/atoms/Loader';
+import { Block, H1, H2, H3, H4, H5, P } from 'components/atoms/Typography';
+import Span from 'components/atoms/Typography/Span';
+import Icon from 'components/icons/Icon';
 import React from 'react';
 
 const Application: React.FC = () => {
@@ -52,6 +53,9 @@ const Application: React.FC = () => {
           <Loader size="m" />
           <Loader size="l" />
           <Loader size="xl" isShowLoadingWords />
+        </Item>
+        <Item>
+          <Icon type="iconChevronsRight" />
         </Item>
       </Grid>
     </div>

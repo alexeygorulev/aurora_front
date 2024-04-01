@@ -20,4 +20,6 @@ export const styles = {
   blockPadding: typographyStyles.blockPadding,
   blockPaddingUnit: typographyStyles.blockPaddingUnit,
   colors: typographyStyles.colors,
+  fontSizes: typographyStyles.headingSizes,
+  display: typographyStyles.display,
 };
