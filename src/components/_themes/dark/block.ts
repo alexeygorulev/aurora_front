@@ -1,4 +1,5 @@
 import { refs as typographyRefs, styles as typographyStyles } from './_typography';
+import { colors, gradients } from './_colors';
 
 export const components = {
   general: 'block',
@@ -22,4 +23,9 @@ export const styles = {
   colors: typographyStyles.colors,
   fontSizes: typographyStyles.headingSizes,
   display: typographyStyles.display,
+
+  backgrounds: {
+    background_main: gradients.background_main,
+    background_secondary: colors.primary20,
+  },
 };

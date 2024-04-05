@@ -18,6 +18,7 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
     rounded = false,
     weight = 'medium',
     loaderType = 'secondary',
+    fontSize = 's',
     typeIcon = null,
     loaderSize = 's',
     isSelected = false,
@@ -76,6 +77,7 @@ const Button: React.FC<ButtonComponentProps> = (props) => {
       sFontWeight={weight}
       onMouseEnter={handleMouseEnter}
       sSelected={isSelected}
+      sFontSize={fontSize}
     >
       {type === 'primary' && (
         <>

@@ -26,7 +26,7 @@ export const refs = {
   },
   fontSize: {
     [mediaSizes.s]: { xs: 10, s: 16, m: 25, l: 40, xl: 64 },
-    [mediaSizes.m]: { xs: 10, s: 16, m: 25, l: 40, xl: 64 },
+    [mediaSizes.m]: { xs: 10, s: 13, m: 25, l: 40, xl: 64 },
     [mediaSizes.l]: { xs: 10, s: 16, m: 25, l: 40, xl: 64 },
   },
   lineHeight: {
@@ -45,10 +45,11 @@ export const styles = {
   display: { ...display },
 
   colors: {
-    [refs.colors.major]: colors.black,
-    [refs.colors.light]: colors.white,
+    [refs.colors.major]: colors.white,
+    [refs.colors.light]: colors.secondary,
     [refs.colors.negative]: colors.error0,
     [refs.colors.transparent]: 'transparent',
+    [refs.colors.primary]: colors.secondary,
   },
 
   blockMargin: {

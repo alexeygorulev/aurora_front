@@ -10,16 +10,16 @@ const IconSlash: React.FC<IconProps> = (props) => {
         <path
           d="M13.7031 22C19.6335 22 24.4411 17.5228 24.4411 12C24.4411 6.47715 19.6335 2 13.7031 2C7.77266 2 2.96509 6.47715 2.96509 12C2.96509 17.5228 7.77266 22 13.7031 22Z"
           stroke="#A7A7A7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M6.11133 4.93005L21.2949 19.0701"
           stroke="#A7A7A7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </IconPrimitive>

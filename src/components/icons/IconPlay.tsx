@@ -10,9 +10,9 @@ const IconPlay: React.FC<IconProps> = (props) => {
         <path
           d="M5.58862 3L19.5886 12L5.58862 21V3Z"
           stroke="#A7A7A7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </IconPrimitive>

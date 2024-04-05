@@ -84,11 +84,11 @@ export const styles = {
 
   borderColors: {
     [refs.types.primary]: {
-      normal: colors.primary0,
-      focused: colors.primary10,
-      hovered: colors.primary0,
-      pressed: colors.primary20,
-      disabled: colors.primary20,
+      normal: colors.purple10,
+      focused: colors.purple10,
+      hovered: colors.purple10,
+      pressed: colors.purple10,
+      disabled: colors.secondary10,
     },
     [refs.types.secondary]: {
       normal: colors.purple10,

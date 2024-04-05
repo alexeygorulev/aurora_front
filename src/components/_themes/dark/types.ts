@@ -42,3 +42,13 @@ export type ButtonAnimationTypes = keyof typeof buttonRefs.animation;
 export type LoaderSize = keyof typeof loaderRefs.sizes;
 
 export type LoaderTypes = keyof typeof loaderRefs.types;
+
+export type StyledInputElementProps = Readonly<{
+  sSize?: Size;
+  sTextAlign?: TextAlign;
+  sDisabled?: boolean;
+  sError?: boolean;
+  sFocused?: boolean;
+  sWithLabel?: boolean;
+  sWithIcon?: boolean;
+}>;

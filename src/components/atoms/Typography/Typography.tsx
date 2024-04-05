@@ -5,11 +5,11 @@ import Block from './Block';
 import { refs as typographyRefs } from 'components/_themes/dark/_typography';
 import { HeadingComponentProps } from './Heading/types';
 
-const H1 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.xs} {...props} />;
-const H2 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.s} {...props} />;
+const H1 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.xl} {...props} />;
+const H2 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.l} {...props} />;
 const H3 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.m} {...props} />;
-const H4 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.l} {...props} />;
-const H5 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.xl} {...props} />;
+const H4 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.s} {...props} />;
+const H5 = (props: HeadingComponentProps) => <Heading size={typographyRefs.sizes.xs} {...props} />;
 
 const Typography = {
   Heading,

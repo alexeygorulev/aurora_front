@@ -1,4 +1,12 @@
-import { ButtonSizes, ButtonTypes, Display, FontWeight, LoaderSize, LoaderTypes } from 'components/_themes/dark/types';
+import {
+  ButtonSizes,
+  ButtonTypes,
+  Display,
+  FontWeight,
+  LoaderSize,
+  LoaderTypes,
+  Size,
+} from 'components/_themes/dark/types';
 import { Theme } from 'components/_themes/types';
 import { IconTypes } from 'components/icons/types';
 
@@ -11,6 +19,7 @@ export type ButtonComponentProps = Readonly<{
   type?: ButtonTypes;
   typeIcon?: IconTypes | null;
   size?: ButtonSizes;
+  fontSize?: Size;
   width?: number | string;
   display?: Display;
   disabled?: boolean;
@@ -36,4 +45,5 @@ export type StyledButtonProps = Readonly<{
   sRounded: boolean;
   isLeaveBackGround: boolean;
   sSelected: boolean;
+  sFontSize: Size;
 }>;

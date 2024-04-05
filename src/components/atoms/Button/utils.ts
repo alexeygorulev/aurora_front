@@ -74,6 +74,6 @@ export const getPadding = (props: StyledButtonProps, mediaSize: string): string 
 };
 
 export const getFontSize = (props: StyledButtonProps, mediaSize: string): string => {
-  const { theme, sSize } = props;
-  return `${theme.button.fontSizes[mediaSize][sSize]}px`;
+  const { theme, sFontSize } = props;
+  return `${theme.button.fontSizes[mediaSize][sFontSize]}px`;
 };

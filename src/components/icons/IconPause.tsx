@@ -10,16 +10,16 @@ const IconPause: React.FC<IconProps> = (props) => {
         <path
           d="M10.5886 4H6.58862V20H10.5886V4Z"
           stroke="#A7A7A7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M18.5886 4H14.5886V20H18.5886V4Z"
           stroke="#A7A7A7"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </IconPrimitive>
