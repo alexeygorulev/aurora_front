@@ -84,7 +84,7 @@ export const styles = {
 
   borderColors: {
     [refs.types.primary]: {
-      normal: colors.purple10,
+      normal: colors.transparent,
       focused: colors.purple10,
       hovered: colors.purple10,
       pressed: colors.purple10,
