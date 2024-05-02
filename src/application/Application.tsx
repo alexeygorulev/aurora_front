@@ -1,13 +1,14 @@
 import Layout from 'components/molecules';
-import React from 'react';
 import Auth from './Auth';
+import Alerts from 'components/atoms/Alerts';
 
-const Application: React.FC = () => {
+export default function Application() {
   return (
-    <Layout>
-      <Auth />
-    </Layout>
+    <>
+      <Layout>
+        <Auth />
+      </Layout>
+      <Alerts />
+    </>
   );
-};
-
-export default Application;
+}

@@ -11,15 +11,35 @@ import {
   StyledAuthPreviewContent,
   StyledAuthWrapper,
 } from './styles';
+import { useActions } from 'hooks/useActions';
+import { handleBlur, handleChange, mount, unmount } from 'store/auth/authStore';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'index';
 
-const Auth = () => {
+export default function Auth() {
+  const { mounted, data } = useSelector((state: RootState) => state?.authReducer) || {};
+
+  const actions = useActions({ mount, unmount, handleChange, handleBlur });
+  const theme = useTheme();
+
+  useEffect(() => {
+    if (!mounted) actions.mount();
+
+    return () => {
+      if (mounted) actions.unmount();
+    };
+  }, [mounted]);
+
+  if (!mounted) return null;
+
   return (
     <StyledAuthWrapper>
-      <StyledAuthContainer theme={useTheme()}>
+      <StyledAuthContainer theme={theme}>
         <StyledAuthPreview>
           <img src={auroraAuthPreview} alt="" />
           <StyledAuthPreviewContent>
-            <H2 color="light">Aurora</H2>
+            <H2 color="light"></H2>
             <div style={{ width: '160px', height: '40px', display: 'flex', alignItems: 'center' }}>
               <H4 color="light">Created By</H4>
               <div style={{ width: 40, marginLeft: 10 }}>
@@ -29,11 +49,14 @@ const Auth = () => {
           </StyledAuthPreviewContent>
         </StyledAuthPreview>
         <StyledAuthContent>
-          <LogIn />
+          <LogIn
+            handleChange={actions.handleChange}
+            touched={data.touchedLoginFields}
+            handleBlur={actions.handleBlur}
+            values={data.valuesLogin}
+          />
         </StyledAuthContent>
       </StyledAuthContainer>
     </StyledAuthWrapper>
   );
-};
-
-export default Auth;
+}

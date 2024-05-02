@@ -5,6 +5,7 @@ import { styles as paragraph } from './paragraph';
 import { styles as button } from './button';
 import { styles as loader } from './loader';
 import { styles as input } from './input';
+import { styles as alerts } from './alerts';
 
 export default {
   block,
@@ -14,4 +15,5 @@ export default {
   button,
   loader,
   input,
+  alerts,
 };

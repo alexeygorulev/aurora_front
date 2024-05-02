@@ -94,8 +94,6 @@ const InputPassword: React.FC<InputPasswordProps> = (props) => {
       setFormattedValue(format(value, maxLength));
       setPrevValue(value);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [format, maxLength, value]);
 
   useEffect(() => {
