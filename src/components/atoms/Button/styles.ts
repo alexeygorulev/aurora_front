@@ -53,10 +53,11 @@ export const StyledButton = styled.button.attrs({ type: 'button' })<StyledButton
   background: ${(props) => getBackgroundColor(props, false, false)};
   border: 1px solid ${(props) => getBorderColor(props, false, false)};
   border-radius: ${(props) => getBorderRadius(props, mediaSizes.s)};
+  font-size: ${(props) => getFontSize(props, mediaSizes.s)};
   height: ${(props) => getHeight(props, mediaSizes.s)};
   line-height: ${(props) => getLineHeight(props, mediaSizes.s)};
   padding: ${(props) => getPadding(props, mediaSizes.s)};
-  font-size: ${(props) => getFontSize(props, mediaSizes.s)};
+  z-index: 10;
 
   & span {
     position: absolute;
@@ -118,18 +119,6 @@ export const StyledButton = styled.button.attrs({ type: 'button' })<StyledButton
     transition-delay: 0.75s;
   }
 
-  &:hover {
-    border-color: ${(props) => getBorderColor(props, false, true)};
-    box-shadow: ${({ sDisabled }) => (sDisabled ? 'none' : '0 0px 20px rgba(110, 48, 180, 0.4)')};
-  }
-
-  &:active {
-    background: ${(props) => getBackgroundColor(props, true, true)};
-    border-color: ${(props) => getBorderColor(props, true, true)};
-    transition: none;
-    transform: ${({ sDisabled }) => (sDisabled ? 'none' : 'translateY(2px)')};
-  }
-
   @media (${media.tablet}) {
     border-radius: ${(props) => getBorderRadius(props, mediaSizes.m)};
     height: ${(props) => getHeight(props, mediaSizes.m)};
@@ -161,8 +150,21 @@ export const StyledButton = styled.button.attrs({ type: 'button' })<StyledButton
       opacity 0.5s;
     z-index: -1;
   }
+
   &:hover::after {
     ${({ sDisabled, sType }) => (sDisabled || typeWithOutAnimation.includes(sType) ? '' : circleAnimation)}
+  }
+
+  &:hover {
+    border-color: ${(props) => getBorderColor(props, false, true)};
+    box-shadow: ${({ sDisabled }) => (sDisabled ? 'none' : '0 0px 20px rgba(110, 48, 180, 0.4)')};
+  }
+
+  &:active {
+    background: ${(props) => getBackgroundColor(props, true, true)};
+    border-color: ${(props) => getBorderColor(props, true, true)};
+    transition: none;
+    transform: ${({ sDisabled }) => (sDisabled ? 'none' : 'translateY(2px)')};
   }
 `;
 

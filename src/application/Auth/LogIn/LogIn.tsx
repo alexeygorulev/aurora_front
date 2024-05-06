@@ -6,34 +6,17 @@ import InputPassword from 'components/atoms/inputs/InputPassword';
 import { useTheme } from 'styled-components';
 import { StyledAuthContentLine } from '../styles';
 import { constraints, fieldsLogin, labels } from './constants';
-import { InputsAuthLogin, TouchedInputsAuthLogin } from '../type';
-import { useSendUserAuthDataMutation } from 'api/store';
 import { useEffect } from 'react';
-import { IConstraints } from 'utils/checkConstraints';
-import { useHandleAuth } from 'hooks/useGetError';
+import { useGetError } from 'hooks/useGetError';
 import { ErrorType, createErrorNotification } from 'utils/createErrorNotification';
-
-export type LogInComponentProps = Readonly<{
-  handleChange: () => void;
-  handleBlur: () => void;
-  values: InputsAuthLogin;
-  touched: TouchedInputsAuthLogin;
-}>;
-
-export type IConstraintsLogin = {
-  login: IConstraints[];
-  password: IConstraints[];
-};
-
-export type IErrorFieldsValue = {
-  login: string;
-  password: string;
-};
+import { LogInComponentProps, Step } from '../type';
+import { useAuthHandler } from 'hooks/useAuthLogic';
 
 export default function LogIn(props: LogInComponentProps) {
-  const { handleBlur, handleChange, values, touched } = props;
+  const { handleBlur, handleChange, values, touched, handleChangeStep, checkErrorLogin } = props;
 
-  const [sendUserAuthData, { isLoading, isError, error }] = useSendUserAuthDataMutation();
+  const { loginParams } = useAuthHandler<{ login: string; password: string }>({ values });
+  const { isErrorLogin: isError, errorLogin: error, onCheckLoginUser, isLoadingLogin: isLoading } = loginParams;
 
   useEffect(() => {
     if (isError && error) {
@@ -41,14 +24,15 @@ export default function LogIn(props: LogInComponentProps) {
     }
   }, [isError, error]);
 
-  const { fieldsError, hasErrors } = useHandleAuth<{ login: string; password: string }>({
+  const { fieldsError, hasErrors, isAllFieldsTouched } = useGetError<{ login: string; password: string }>({
     values,
     touched,
     constraints,
   });
 
   const onSubmit = async () => {
-    if (!hasErrors) await sendUserAuthData(values);
+    checkErrorLogin(Step.Login);
+    if (!hasErrors && isAllFieldsTouched) await onCheckLoginUser();
   };
 
   return (
@@ -123,23 +107,18 @@ export default function LogIn(props: LogInComponentProps) {
           )}
         </Item>
       </Grid>
-      {/* <Item size={12}>
-        <Block>
-          <InputCheckbox id={fieldsLogin.consent} onChange={handleChange} value={values.consent}>
-            {labels.input_labels.agreement}
-          </InputCheckbox>
-        </Block>
-      </Item> */}
       <Item size={12}>
         <Block padding="xs" margin="xs">
-          <Button onClick={onSubmit} loading={isLoading} width="100%">
+          <Button onClick={onSubmit} disabled={hasErrors} loading={isLoading} width="100%">
             {labels.buttons.login}
           </Button>
         </Block>
       </Item>
       <Item size={12}>
         <Block padding="xs" margin="xs">
-          <Button width="100%">{labels.buttons.registration}</Button>
+          <Button onClick={() => handleChangeStep(Step.Registration)} width="100%">
+            {labels.buttons.registration}
+          </Button>
         </Block>
       </Item>
       <Block padding="xs" margin="xs">

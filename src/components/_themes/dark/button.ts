@@ -42,10 +42,10 @@ export const styles = {
       [refs.animation.left]: gradients.purple_main_animation_left,
     },
     [refs.types.secondary]: {
-      [refs.animation.top]: gradients.purple_main_animation_top,
-      [refs.animation.right]: gradients.purple_main_animation_right,
-      [refs.animation.bottom]: gradients.purple_main_animation_bottom,
-      [refs.animation.left]: gradients.purple_main_animation_left,
+      [refs.animation.top]: colors.transparent,
+      [refs.animation.right]: colors.transparent,
+      [refs.animation.bottom]: colors.transparent,
+      [refs.animation.left]: colors.transparent,
     },
     [refs.types.major]: {
       [refs.animation.top]: colors.transparent,

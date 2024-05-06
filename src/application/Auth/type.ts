@@ -7,8 +7,14 @@ export type StyledAuthContainerProps = Readonly<{
   theme: Theme;
 }>;
 
+export enum Step {
+  Login = 'Login',
+  Registration = 'Registration',
+}
+
 export type IAuthInitialState = {
   mounted: boolean;
+  step: Step;
   data: Data;
 };
 
@@ -20,6 +26,10 @@ export type TouchedInputsAuthLogin = {
   [K in keyof typeof fieldsLogin]: boolean;
 };
 
+export type TouchedInputsAuthRegistration = {
+  [K in keyof typeof fieldsSignUp]: boolean;
+};
+
 export type InputsAuthSignUp = {
   [K in keyof typeof fieldsSignUp]: K extends 'consent' ? boolean : string;
 };
@@ -27,10 +37,17 @@ export type InputsAuthSignUp = {
 export type Data = {
   valuesLogin: InputsAuthLogin;
   touchedLoginFields: TouchedInputsAuthLogin;
+  valuesRegistration: InputsAuthSignUp;
+  touchedRegistrationFields: TouchedInputsAuthRegistration;
 };
 
-export type IHandleChangeArgs = {
+export type IHandleChangeArgsLogin = {
   id: keyof typeof fieldsLogin;
+  value: string | boolean;
+};
+
+export type IHandleChangeArgsRegistration = {
+  id: keyof typeof fieldsSignUp;
   value: string | boolean;
 };
 
@@ -50,13 +67,78 @@ export type ErrorFieldsValue<T> = {
   [K in keyof T]?: string;
 };
 
+export type UseAuthLogicFields<T> = {
+  [K in keyof T]: K extends 'consent' ? boolean : string;
+};
+
 export interface UseHandleAuthProps<T> {
   values: Fields<T>;
   touched: TouchedFields<T>;
   constraints: Constraints<T>;
 }
 
+export interface UseAuthLogicProps<T> {
+  values: UseAuthLogicFields<T>;
+}
+
 export interface UseHandleAuthReturn<T> {
   fieldsError: ErrorFieldsValue<T>;
   hasErrors: boolean;
+  isHaveEqualPasswordError: boolean;
+  isAllFieldsTouched: boolean;
 }
+
+export type LogInComponentProps = Readonly<{
+  handleChange: () => void;
+  handleBlur: () => void;
+  checkErrorLogin: (page: Step) => void;
+  handleChangeStep: (step: Step) => void;
+  values: InputsAuthLogin;
+  touched: TouchedInputsAuthLogin;
+}>;
+
+export type IConstraintsLogin = {
+  login: IConstraints[];
+  password: IConstraints[];
+};
+
+export type IErrorFieldsValue = {
+  login: string;
+  password: string;
+};
+
+export type SignUpComponentProps = Readonly<{
+  handleChange: () => void;
+  handleBlur: () => void;
+  checkErrorReg: (step: Step) => void;
+  handleChangeStep: (step: Step) => void;
+  values: InputsAuthSignUp;
+  touched: TouchedInputsAuthRegistration;
+}>;
+
+export interface SignUpErrorFields {
+  email: string;
+  login: string;
+  password: string;
+  repeat_password: string;
+}
+
+export interface PasswordFields {
+  password?: string;
+  repeat_password?: string;
+  consent?: boolean;
+}
+
+export interface LoginFormValues {
+  login: string;
+  password: string;
+}
+export interface RegistrationFormValues {
+  email: string;
+  login: string;
+  password: string;
+  role: string;
+  consent: boolean;
+}
+
+export type AuthFormValues = LoginFormValues | RegistrationFormValues;

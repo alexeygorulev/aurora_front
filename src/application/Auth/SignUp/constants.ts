@@ -1,3 +1,6 @@
+import { constraintsTypes } from 'utils/checkConstraints';
+import { Constraints, SignUpErrorFields } from '../type';
+
 export const fieldsSignUp = {
   email: 'email',
   login: 'login',
@@ -6,6 +9,14 @@ export const fieldsSignUp = {
   role: 'role',
   consent: 'consent',
 } as const;
+
+export const roles = {
+  user: 'User',
+  admin: 'Admin',
+  moderator: 'Moderator',
+};
+
+export const rolesList = [roles.admin, roles.moderator, roles.user];
 
 export const labels = {
   main_title: 'Registration Page',
@@ -25,4 +36,58 @@ export const labels = {
     registration: 'Registration',
   },
   forget_label: 'Forget your password?',
+};
+
+export const no_equal_password_label = 'Пароли должны совпадать';
+
+export const constraints: Constraints<SignUpErrorFields> = {
+  [fieldsSignUp.login]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо указать логин',
+    },
+    {
+      type: constraintsTypes.range,
+      message: 'Пароль должен быть длиной от 3 до 16 символов',
+      condition: { min: 3, max: 16 },
+    },
+  ],
+  [fieldsSignUp.email]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо указать email',
+    },
+    {
+      type: constraintsTypes.pattern,
+      message: 'Некорректный формат email',
+      condition: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$',
+    },
+  ],
+  [fieldsSignUp.repeat_password]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо ввести еще раз пароль',
+    },
+  ],
+  [fieldsSignUp.password]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо указать пароль',
+    },
+    {
+      type: constraintsTypes.range,
+      message: 'Пароль должен быть длиной от 6 до 16 символов',
+      condition: { min: 6, max: 16 },
+    },
+    {
+      type: constraintsTypes.includes,
+      message: 'Пароль должен включать в себя хотя бы одну латинску букву',
+      condition: '[A-Za-z]',
+    },
+    {
+      type: constraintsTypes.includes,
+      message: 'Пароль должен включать в себя хотя бы одну цифру',
+      condition: '[0-9]',
+    },
+  ],
 };

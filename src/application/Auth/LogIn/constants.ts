@@ -29,6 +29,11 @@ export const constraints: Constraints<{ login: string; password: string }> = {
       type: constraintsTypes.required,
       message: 'Необходимо указать логин',
     },
+    {
+      type: constraintsTypes.range,
+      message: 'Пароль должен быть длиной от 3 до 10 символов',
+      condition: { min: 3, max: 10 },
+    },
   ],
   [fieldsLogin.password]: [
     {

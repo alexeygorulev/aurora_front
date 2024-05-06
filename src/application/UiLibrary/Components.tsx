@@ -58,7 +58,9 @@ const Components = () => {
           <Icon type="iconSuccess" />
         </Item>
         <Item size={6}>
-          <Tabs>Админ</Tabs>
+          <Tabs id="kek" handleClick={() => ''}>
+            Админ
+          </Tabs>
           <Block>
             <InputCheckbox>Принять</InputCheckbox>
           </Block>

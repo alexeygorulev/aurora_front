@@ -61,13 +61,24 @@ export const StyledAuthPreview = styled.div`
   }
 `;
 
-export const StyledAuthContent = styled.div`
+export const StyledAuthContent = styled.div<{ SignUp: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({ SignUp }) => (SignUp ? 'start' : 'center')};
   width: 100%;
   height: 100%;
   padding: 50px 16px;
+  ${({ SignUp }) =>
+    SignUp
+      ? `
+      overflow-y: auto;
+      ::-webkit-scrollbar {
+          display: none;
+      }
+      scrollbar-width: none; 
+      -ms-overflow-style: none; 
+  `
+      : ``}
 
   @media (${media.tablet}) {
     width: 50%;

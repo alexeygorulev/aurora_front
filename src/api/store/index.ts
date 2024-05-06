@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { urls } from 'api/constants';
-import { IApiUserDataLogin } from './types';
+import { IApiUserDataLogin, IApiUserDataRegistration } from './types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -11,8 +11,16 @@ export const apiSlice = createApi({
         : 'https://aurora.ru/aurora-front-api',
   }),
   endpoints: (builder) => ({
-    sendUserAuthData: builder.mutation({
+    sendUserAuthDataLogin: builder.mutation({
       query: (data: IApiUserDataLogin) => ({
+        url: urls.loginRequest,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    sendUserAuthDataRegistration: builder.mutation({
+      query: (data: IApiUserDataRegistration) => ({
         url: urls.loginRequest,
         method: 'POST',
         body: data,
@@ -25,4 +33,4 @@ if (!apiSlice) {
   throw new Error('apiSlice is undefined');
 }
 
-export const { useSendUserAuthDataMutation } = apiSlice;
+export const { useSendUserAuthDataLoginMutation, useSendUserAuthDataRegistrationMutation } = apiSlice;
