@@ -52,7 +52,17 @@ export default function LogIn(props: LogInComponentProps) {
               </Button>
             </Item>
             <Item size={9} tablet={6}>
-              <Button id="Yandex" fontSize="s" typeIcon="iconYandexLogo" width="100%" type="major" rounded={true}>
+              <Button
+                id="Yandex"
+                fontSize="s"
+                onClick={() =>
+                  (window.location.href = `${process.env.REACT_APP_APPLICATION_API_HOST}/aurora-front-api/auth/yandex`)
+                }
+                typeIcon="iconYandexLogo"
+                width="100%"
+                type="major"
+                rounded={true}
+              >
                 {labels.login_yandex}
               </Button>
             </Item>

@@ -2,6 +2,7 @@ import { addNotification } from 'application/Alerts';
 
 interface ApiErrorData {
   message?: string | string[];
+  error?: string | string[];
 }
 
 interface FetchBaseQueryError {

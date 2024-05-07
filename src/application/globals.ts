@@ -5,9 +5,9 @@ export const paths = {
 };
 
 export const userAuthorities = {
-  admin: 'admin',
-  user: 'user',
-  moderator: 'moderator',
+  admin: 'Admin',
+  user: 'User',
+  moderator: 'Moderator',
 };
 
 export const captions = {

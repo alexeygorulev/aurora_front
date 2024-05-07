@@ -5,6 +5,8 @@ export const fieldsSignUp = {
   email: 'email',
   login: 'login',
   password: 'password',
+  first_name: 'first_name',
+  last_name: 'last_name',
   repeat_password: 'repeat_password',
   role: 'role',
   consent: 'consent',
@@ -27,6 +29,8 @@ export const labels = {
     email: 'Email',
     login: 'Login',
     password: 'Password',
+    first_name: 'Your name',
+    last_name: 'Your last name',
     repeat_password: 'Repeat password',
     role: 'Choose your role',
     agreement: 'I agree to the Terms & Privacy',
@@ -50,6 +54,28 @@ export const constraints: Constraints<SignUpErrorFields> = {
       type: constraintsTypes.range,
       message: 'Пароль должен быть длиной от 3 до 16 символов',
       condition: { min: 3, max: 16 },
+    },
+  ],
+  [fieldsSignUp.first_name]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо указать имя',
+    },
+    {
+      type: constraintsTypes.range,
+      message: 'Имя до 16 символов',
+      condition: { min: 0, max: 16 },
+    },
+  ],
+  [fieldsSignUp.last_name]: [
+    {
+      type: constraintsTypes.required,
+      message: 'Необходимо указать фамилию',
+    },
+    {
+      type: constraintsTypes.range,
+      message: 'Фамилия до 16 символов',
+      condition: { min: 0, max: 16 },
     },
   ],
   [fieldsSignUp.email]: [

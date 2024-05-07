@@ -1,6 +1,6 @@
-import { useSendUserAuthDataLoginMutation } from 'api/store';
+import { useSendUserAuthDataLoginMutation, useSendUserAuthDataRegistrationMutation } from 'api/store';
 import { AuthFormValues, RegistrationFormValues, UseAuthLogicProps } from 'application/Auth/type';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { isRegistrationFormValues } from 'utils/helpers';
 
 export function useAuthHandler<T extends AuthFormValues>({ values }: UseAuthLogicProps<T>) {
@@ -8,21 +8,17 @@ export function useAuthHandler<T extends AuthFormValues>({ values }: UseAuthLogi
     useSendUserAuthDataLoginMutation();
 
   const [sendUserAuthDataRegistration, { isLoading: isLoadingReg, isError: isErrorReg, error: errorReg }] =
-    useSendUserAuthDataLoginMutation();
-
-  const [token, setToken] = useState('');
+    useSendUserAuthDataRegistrationMutation();
 
   const onCheckLoginUser = useCallback(async () => {
     if ('login' in values && 'password' in values) {
-      const res = await sendUserAuthDataLogin({
+      await sendUserAuthDataLogin({
         login: values.login,
         password: values.password,
       });
-      if ('data' in res) {
-        localStorage.setItem('access_token', res.data?.access_token);
-      }
+      window.location.reload();
     }
-  }, [sendUserAuthDataLogin, values, token]);
+  }, [sendUserAuthDataLogin, values]);
 
   const loginParams = {
     isLoadingLogin,
@@ -37,12 +33,14 @@ export function useAuthHandler<T extends AuthFormValues>({ values }: UseAuthLogi
         email: values.email,
         password: values.password,
         login: values.login,
+        first_name: values.first_name,
+        last_name: values.last_name,
         consent: values.consent,
         role: values.role,
       };
 
-      const res = await sendUserAuthDataRegistration(userData);
-      if ('data' in res) setToken(res.data && res.data.access_token);
+      await sendUserAuthDataRegistration(userData);
+      window.location.reload();
     }
   }, [sendUserAuthDataRegistration, values]);
 
@@ -53,5 +51,5 @@ export function useAuthHandler<T extends AuthFormValues>({ values }: UseAuthLogi
     errorReg,
   };
 
-  return { token, loginParams, registrationParams };
+  return { loginParams, registrationParams };
 }

@@ -16,14 +16,24 @@ export const apiSlice = createApi({
         url: urls.loginRequest,
         method: 'POST',
         body: data,
+        credentials: 'include',
       }),
     }),
 
     sendUserAuthDataRegistration: builder.mutation({
       query: (data: IApiUserDataRegistration) => ({
-        url: urls.loginRequest,
+        url: urls.registrationRequest,
         method: 'POST',
         body: data,
+        credentials: 'include',
+      }),
+    }),
+
+    getUserProfileData: builder.query<any, void>({
+      query: () => ({
+        url: urls.userProfile,
+        method: 'GET',
+        credentials: 'include',
       }),
     }),
   }),
@@ -33,4 +43,5 @@ if (!apiSlice) {
   throw new Error('apiSlice is undefined');
 }
 
-export const { useSendUserAuthDataLoginMutation, useSendUserAuthDataRegistrationMutation } = apiSlice;
+export const { useSendUserAuthDataLoginMutation, useSendUserAuthDataRegistrationMutation, useGetUserProfileDataQuery } =
+  apiSlice;

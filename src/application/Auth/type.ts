@@ -2,6 +2,7 @@ import { Theme } from 'components/_themes/types';
 import { fieldsLogin } from './LogIn/constants';
 import { fieldsSignUp } from './SignUp/constants';
 import { IConstraints } from 'utils/checkConstraints';
+import { Role } from 'api/store/types';
 
 export type StyledAuthContainerProps = Readonly<{
   theme: Theme;
@@ -119,6 +120,8 @@ export type SignUpComponentProps = Readonly<{
 export interface SignUpErrorFields {
   email: string;
   login: string;
+  first_name: string;
+  last_name: string;
   password: string;
   repeat_password: string;
 }
@@ -137,7 +140,9 @@ export interface RegistrationFormValues {
   email: string;
   login: string;
   password: string;
-  role: string;
+  first_name: string;
+  last_name: string;
+  role: Role;
   consent: boolean;
 }
 

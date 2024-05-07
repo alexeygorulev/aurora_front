@@ -21,6 +21,8 @@ const initialState: IAuthInitialState = {
       email: '',
       login: '',
       password: '',
+      last_name: '',
+      first_name: '',
       repeat_password: '',
       role: 'User',
       consent: false,
@@ -29,6 +31,8 @@ const initialState: IAuthInitialState = {
       email: false,
       login: false,
       password: false,
+      last_name: false,
+      first_name: false,
       repeat_password: false,
       role: true,
       consent: false,
@@ -76,6 +80,8 @@ export const authSlice = createSlice({
           email: true,
           login: true,
           password: true,
+          first_name: true,
+          last_name: true,
           repeat_password: true,
           role: true,
           consent: true,
@@ -89,6 +95,8 @@ export const authSlice = createSlice({
       switch (id) {
         case fieldsSignUp.email:
         case fieldsSignUp.login:
+        case fieldsSignUp.first_name:
+        case fieldsSignUp.last_name:
         case fieldsSignUp.password:
         case fieldsSignUp.repeat_password:
         case fieldsSignUp.role:

@@ -19,6 +19,16 @@ export const StyledLoader = styled.div<StyledLoaderComponentProps>`
     width: ${(props) => getSizeLoader(props, 'l')};
     height: ${(props) => getSizeLoader(props, 'l')};
   }
+
+  ${({ sCentred }) =>
+    sCentred
+      ? `
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  `
+      : ``}
 `;
 
 export const StyledInner = styled.div<StyledLoaderInnerComponentProps>`

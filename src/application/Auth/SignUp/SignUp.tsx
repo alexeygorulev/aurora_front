@@ -7,13 +7,16 @@ import InputCheckbox from 'components/atoms/inputs/InputCheckbox';
 import { useTheme } from 'styled-components';
 import { StyledAuthContentLine } from '../styles';
 import { fieldsSignUp, labels, no_equal_password_label, rolesList } from './constants';
-import { SignUpComponentProps, SignUpErrorFields, Step } from '../type';
+import { RegistrationFormValues, SignUpComponentProps, SignUpErrorFields, Step } from '../type';
 import { isMobile } from 'utils/isMobile';
 import { useGetError } from 'hooks/useGetError';
 import { constraints } from './constants';
+import { useAuthHandler } from 'hooks/useAuthLogic';
+import { useEffect } from 'react';
+import { ErrorType, createErrorNotification } from 'utils/createErrorNotification';
 
 export default function SignUp(props: SignUpComponentProps) {
-  const { handleChange, values, handleBlur, handleChangeStep, touched } = props;
+  const { handleChange, values, handleBlur, handleChangeStep, touched, checkErrorReg } = props;
 
   const mobileScreen = isMobile.screenSize();
 
@@ -22,6 +25,20 @@ export default function SignUp(props: SignUpComponentProps) {
     touched,
     constraints,
   });
+
+  const { registrationParams } = useAuthHandler<RegistrationFormValues>({ values });
+  const { isErrorReg: isError, errorReg: error, onSubscribeUser, isLoadingReg: isLoading } = registrationParams;
+
+  useEffect(() => {
+    if (isError && error) {
+      createErrorNotification(isError, error as ErrorType);
+    }
+  }, [isError, error]);
+
+  const onSubmit = async () => {
+    checkErrorReg(Step.Registration);
+    if (!hasErrors && isAllFieldsTouched) await onSubscribeUser();
+  };
 
   return (
     <>
@@ -40,7 +57,17 @@ export default function SignUp(props: SignUpComponentProps) {
               </Button>
             </Item>
             <Item size={9} tablet={6}>
-              <Button id="Yandex" fontSize="s" typeIcon="iconYandexLogo" width="100%" type="major" rounded={true}>
+              <Button
+                id="Yandex"
+                onClick={() =>
+                  (window.location.href = `${process.env.REACT_APP_APPLICATION_API_HOST}/aurora-front-api/auth/yandex`)
+                }
+                fontSize="s"
+                typeIcon="iconYandexLogo"
+                width="100%"
+                type="major"
+                rounded={true}
+              >
                 {labels.login_yandex}
               </Button>
             </Item>
@@ -90,6 +117,46 @@ export default function SignUp(props: SignUpComponentProps) {
           {fieldsError[fieldsSignUp.login] && (
             <Span color="error10" size="s">
               {fieldsError.login}
+            </Span>
+          )}
+        </Item>
+        <Item size={12}>
+          <Block padding="xs" margin="xs">
+            <InputText
+              id={fieldsSignUp.first_name}
+              value={values[fieldsSignUp.first_name]}
+              error={!!fieldsError[fieldsSignUp.first_name]}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              success={!!values.first_name && !fieldsError[fieldsSignUp.first_name] && touched[fieldsSignUp.first_name]}
+              leftIcon={true}
+              typeIcon="iconUser"
+              label={labels.input_labels.first_name}
+            />
+          </Block>
+          {fieldsError[fieldsSignUp.first_name] && (
+            <Span color="error10" size="s">
+              {fieldsError.first_name}
+            </Span>
+          )}
+        </Item>
+        <Item size={12}>
+          <Block padding="xs" margin="xs">
+            <InputText
+              id={fieldsSignUp.last_name}
+              value={values[fieldsSignUp.last_name]}
+              error={!!fieldsError[fieldsSignUp.last_name]}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              success={!!values.last_name && !fieldsError[fieldsSignUp.last_name] && touched[fieldsSignUp.last_name]}
+              leftIcon={true}
+              typeIcon="iconUser"
+              label={labels.input_labels.last_name}
+            />
+          </Block>
+          {fieldsError[fieldsSignUp.last_name] && (
+            <Span color="error10" size="s">
+              {fieldsError.last_name}
             </Span>
           )}
         </Item>
@@ -172,7 +239,12 @@ export default function SignUp(props: SignUpComponentProps) {
       </Item>
       <Item size={12}>
         <Block padding="xs" margin="xs">
-          <Button disabled={hasErrors || !isAllFieldsTouched || !values.consent} width="100%">
+          <Button
+            loading={isLoading}
+            onClick={onSubmit}
+            disabled={hasErrors || !isAllFieldsTouched || isHaveEqualPasswordError || !values.consent}
+            width="100%"
+          >
             {labels.buttons.registration}
           </Button>
         </Block>

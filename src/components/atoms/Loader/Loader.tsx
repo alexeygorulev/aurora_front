@@ -4,11 +4,11 @@ import { StyledInner, StyledLoader } from './styles';
 import { useTheme } from 'styled-components';
 
 const Loader: React.FC<LoaderComponentProps> = (props) => {
-  const { size = 'm', type = 'secondary', isShowLoadingWords = false } = props;
+  const { size = 'm', type = 'secondary', isShowLoadingWords = false, isCentred = false } = props;
 
   return (
     <>
-      <StyledLoader sLoaderType={type} theme={useTheme()} sSize={size}>
+      <StyledLoader sCentred={isCentred} sLoaderType={type} theme={useTheme()} sSize={size}>
         <StyledInner sLoaderType={type} theme={useTheme()} sInnerType="one"></StyledInner>
         <StyledInner sLoaderType={type} theme={useTheme()} sInnerType="two"></StyledInner>
         <StyledInner sLoaderType={type} theme={useTheme()} sInnerType="three"></StyledInner>
