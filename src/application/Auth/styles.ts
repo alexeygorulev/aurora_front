@@ -26,6 +26,12 @@ export const StyledAuthContainer = styled.div<StyledAuthContainerProps>`
     padding: 0;
     overflow: hidden;
   }
+  ${({ isReset }) =>
+    isReset
+      ? `
+  justify-content: center;
+  `
+      : ``}
 `;
 
 export const StyledAuthWrapper = styled.div`

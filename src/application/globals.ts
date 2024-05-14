@@ -2,6 +2,7 @@ export const paths = {
   home: '/',
   notFound: '/*',
   auth: '/authentication',
+  resetPassword: '/authentication/reset-password',
 };
 
 export const userAuthorities = {
@@ -15,6 +16,7 @@ export const captions = {
     home: 'Главная',
     notFound: 'Страница не найдена',
     auth: 'Страница авторизации',
+    resetPassword: 'Страница сброса пароля',
   },
   errors: {
     default: 'Возникла ошибка. Мы, скорее всего, уже работаем над исправлением. Можете уточнить у службы поддержки.',
@@ -39,6 +41,11 @@ export const pages = {
     id: 'auth',
     path: paths.auth,
     title: captions.pages.auth,
+  },
+  resetPassword: {
+    id: 'resetPassword',
+    path: paths.resetPassword,
+    title: captions.pages.resetPassword,
   },
 };
 

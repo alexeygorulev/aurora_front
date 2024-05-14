@@ -18,3 +18,20 @@ export interface IApiUserDataRegistration {
   consent: boolean;
   role: Role;
 }
+
+export interface IApiUserDataRecoverPassword {
+  email: string;
+}
+
+export interface IApiUserDataResetPassword {
+  password: string;
+}
+
+export interface IApiUserDataResetPasswordParams {
+  token: string;
+}
+
+export type CombinedResetPasswordData = {
+  data: IApiUserDataResetPassword;
+  params: IApiUserDataResetPasswordParams;
+};

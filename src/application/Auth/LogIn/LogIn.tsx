@@ -11,6 +11,7 @@ import { useGetError } from 'hooks/useGetError';
 import { ErrorType, createErrorNotification } from 'utils/createErrorNotification';
 import { LogInComponentProps, Step } from '../type';
 import { useAuthHandler } from 'hooks/useAuthLogic';
+import { addNotification } from 'application/Alerts';
 
 export default function LogIn(props: LogInComponentProps) {
   const { handleBlur, handleChange, values, touched, handleChangeStep, checkErrorLogin } = props;
@@ -47,7 +48,20 @@ export default function LogIn(props: LogInComponentProps) {
         <Item size={12}>
           <Grid justify="center">
             <Item size={9} tablet={6}>
-              <Button id="Google" fontSize="s" typeIcon="iconGoogle" width="100%" type="major" rounded={true}>
+              <Button
+                id="Google"
+                fontSize="s"
+                onClick={() =>
+                  addNotification({
+                    type: 'info',
+                    message: 'Данный способ недоступен для реализации в России. Google Cloud недоступен:(',
+                  })
+                }
+                typeIcon="iconGoogle"
+                width="100%"
+                type="major"
+                rounded={true}
+              >
                 {labels.login_google}
               </Button>
             </Item>
@@ -131,7 +145,7 @@ export default function LogIn(props: LogInComponentProps) {
           </Button>
         </Block>
       </Item>
-      <Block padding="xs" margin="xs">
+      <Block onClick={() => handleChangeStep(Step.Forget_Password)} padding="xs" margin="xs">
         <H4 style={{ cursor: 'pointer' }} weight="extraLight" textAlign="center">
           {labels.forget_label}
         </H4>

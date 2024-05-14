@@ -6,11 +6,14 @@ import { Role } from 'api/store/types';
 
 export type StyledAuthContainerProps = Readonly<{
   theme: Theme;
+  isReset?: boolean;
 }>;
 
 export enum Step {
   Login = 'Login',
   Registration = 'Registration',
+  Forget_Password = 'Forget_Password',
+  Reset_Password = 'Reset_Password',
 }
 
 export type IAuthInitialState = {
@@ -130,6 +133,7 @@ export interface PasswordFields {
   password?: string;
   repeat_password?: string;
   consent?: boolean;
+  email?: string;
 }
 
 export interface LoginFormValues {
@@ -147,3 +151,8 @@ export interface RegistrationFormValues {
 }
 
 export type AuthFormValues = LoginFormValues | RegistrationFormValues;
+
+export enum IResetPasswordFieldsNames {
+  password = 'password',
+  repeat_password = 'repeat_password',
+}

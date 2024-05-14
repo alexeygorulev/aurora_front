@@ -14,6 +14,7 @@ import { constraints } from './constants';
 import { useAuthHandler } from 'hooks/useAuthLogic';
 import { useEffect } from 'react';
 import { ErrorType, createErrorNotification } from 'utils/createErrorNotification';
+import { addNotification } from 'application/Alerts';
 
 export default function SignUp(props: SignUpComponentProps) {
   const { handleChange, values, handleBlur, handleChangeStep, touched, checkErrorReg } = props;
@@ -52,7 +53,20 @@ export default function SignUp(props: SignUpComponentProps) {
         <Item size={12}>
           <Grid justify="center">
             <Item size={9} tablet={6}>
-              <Button id="Google" fontSize="s" typeIcon="iconGoogle" width="100%" type="major" rounded={true}>
+              <Button
+                id="Google"
+                onClick={() =>
+                  addNotification({
+                    type: 'info',
+                    message: 'Данный способ недоступен для реализации в России. Google Cloud недоступен:(',
+                  })
+                }
+                fontSize="s"
+                typeIcon="iconGoogle"
+                width="100%"
+                type="major"
+                rounded={true}
+              >
                 {labels.login_google}
               </Button>
             </Item>
@@ -89,7 +103,7 @@ export default function SignUp(props: SignUpComponentProps) {
               value={values[fieldsSignUp.email]}
               onChange={handleChange}
               leftIcon={true}
-              success={!!values.login && !fieldsError[fieldsSignUp.email] && touched[fieldsSignUp.email]}
+              success={!!values.email && !fieldsError[fieldsSignUp.email] && touched[fieldsSignUp.email]}
               typeIcon="iconMail"
               label={labels.input_labels.email}
             />
@@ -256,11 +270,6 @@ export default function SignUp(props: SignUpComponentProps) {
           </Button>
         </Block>
       </Item>
-      <Block padding="xs" margin="xs">
-        <H4 style={{ cursor: 'pointer' }} weight="extraLight" textAlign="center">
-          {labels.forget_label}
-        </H4>
-      </Block>
     </>
   );
 }

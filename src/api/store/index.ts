@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { urls } from 'api/constants';
-import { IApiUserDataLogin, IApiUserDataRegistration } from './types';
+import {
+  CombinedResetPasswordData,
+  IApiUserDataLogin,
+  IApiUserDataRecoverPassword,
+  IApiUserDataRegistration,
+} from './types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -29,6 +34,24 @@ export const apiSlice = createApi({
       }),
     }),
 
+    sendUserAuthDataRecoverPassword: builder.mutation({
+      query: (data: IApiUserDataRecoverPassword) => ({
+        url: urls.sendRecoverPassword,
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      }),
+    }),
+
+    sendUserAuthDataResetPassword: builder.mutation<void, CombinedResetPasswordData>({
+      query: ({ data, params }) => ({
+        url: urls.sendResetPassword,
+        method: 'POST',
+        body: data,
+        params,
+      }),
+    }),
+
     getUserProfileData: builder.query<any, void>({
       query: () => ({
         url: urls.userProfile,
@@ -43,5 +66,10 @@ if (!apiSlice) {
   throw new Error('apiSlice is undefined');
 }
 
-export const { useSendUserAuthDataLoginMutation, useSendUserAuthDataRegistrationMutation, useGetUserProfileDataQuery } =
-  apiSlice;
+export const {
+  useSendUserAuthDataLoginMutation,
+  useSendUserAuthDataRegistrationMutation,
+  useSendUserAuthDataRecoverPasswordMutation,
+  useSendUserAuthDataResetPasswordMutation,
+  useGetUserProfileDataQuery,
+} = apiSlice;

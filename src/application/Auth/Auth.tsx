@@ -21,12 +21,15 @@ import {
   handleBlurLogin,
   checkFieldsByError,
 } from 'store/auth/authStore';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'index';
 import SignUp from './SignUp/SignUp';
 import { Step } from './type';
 import LogIn from './LogIn';
+import ForgetPassword from './ForgetPassword';
+import { Outlet } from 'react-router-dom';
+import { LayoutContext } from 'application/context';
 
 export default function Auth() {
   const { mounted, data, step } = useSelector((state: RootState) => state?.authReducer) || {};
@@ -44,6 +47,12 @@ export default function Auth() {
 
   const theme = useTheme();
   const formRef = useRef<HTMLDivElement>(null);
+  const { token } = useContext(LayoutContext);
+
+  useEffect(() => {
+    if (token) actions.changeStep(Step.Reset_Password);
+    else actions.changeStep(Step.Login);
+  }, [token]);
 
   useEffect(() => {
     if (!mounted) actions.mount();
@@ -98,6 +107,8 @@ export default function Auth() {
               checkErrorReg={actions.checkFieldsByError}
             />
           )}
+          {step === Step.Forget_Password && <ForgetPassword handleChangeStep={actions.changeStep} />}
+          {!!token && <Outlet />}
         </StyledAuthContent>
       </StyledAuthContainer>
     </StyledAuthWrapper>

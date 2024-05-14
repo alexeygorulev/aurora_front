@@ -9,7 +9,7 @@ const initialState: IApplicationInitialState = {
 };
 
 export const applicationSlice = createSlice({
-  name: 'authReducer',
+  name: 'applicationReducer',
   initialState,
   reducers: {
     mount: (state: IApplicationInitialState): void => {
